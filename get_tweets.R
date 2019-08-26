@@ -26,7 +26,7 @@ for(i in 2:length(file_names)){
 }
 
 # Get new tweets
-new_tweet_list <- searchTwitter('#ATO', resultType="recent", n=1000)  # 1000 requested 617 returned on 26/08/2019.  All appear to be english
+new_tweet_list <- searchTwitter('#ATO', resultType="recent", n=1000)  
 new_tweets <- twListToDF(new_tweet_list)
 
 new_tweets <- new_tweets %>% mutate(date = date(created))  
@@ -44,5 +44,5 @@ for(d in dates) {
   save('d_tweets',file=paste0(DATA_DIR,'/ATO_tweets_',d,'.RData'))
 }
 
-#save('ATO_tweets',file=paste0(DATA_DIR,'/ATO_tweets.RData'))
+
 
