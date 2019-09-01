@@ -14,7 +14,7 @@ source("Auth.R")
 # Get existing tweets
 
 file_names <- list.files(path = file.path(DATA_DIR),
-                   pattern=".RData",full.names = TRUE)
+                         pattern="ATO_tweets_20..-..-...RData",full.names = TRUE)
 
 load(file_names[1])
 
@@ -44,5 +44,4 @@ for(d in dates) {
   save('d_tweets',file=paste0(DATA_DIR,'/ATO_tweets_',d,'.RData'))
 }
 
-
-
+save('ATO_tweets',file=paste0(DATA_DIR,'/ATO_tweets.RData'))
