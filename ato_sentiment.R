@@ -1,17 +1,13 @@
-# First attempt to anaylse the Tweets
+# Sentiment Analysis of #ATO Tweets
+# using code from https://www.kaggle.com/rtatman/tutorial-sentiment-analysis-in-r
 
-library(twitteR)
+# load in the libraries we'll need
 library(tidyverse)
 library(tidytext)
-library(dplyr)
-library(lubridate)
-library(ggplot2)
+library(glue)
 library(stringr)
-library(wordcloud)
-library(wordcloud2)
-library(syuzhet)  # Sentiment Analysis
 
-
+# Set environmentvariables.
 #PROJECT_DIR <- "/home/RADLAB/ruca78/sentiment-analysis-research"
 #DATA_DIR    <- "/data/group3/tweets"
 PROJECT_DIR <- "c:/R/MAD_Social"
@@ -23,16 +19,37 @@ load(file=paste0(DATA_DIR,'/ATO_tweets.RData'))
 
 summary(ATO_tweets)
 
-#  Analysis to try:
-# plot number of tweets by day
+library(syuzhet)  # Sentiment Analysis
+# Classify Tweets by Sentiment
+# Using code from the Whats_app.R program
 
-ggplot(data=ATO_tweets, aes(date)) + 
+Sentiment <- get_nrc_sentiment(ATO_tweets$text)
+head(Sentiment[c('negative','positive')])
+ATO_tweets <- cbind(ATO_tweets,Sentiment[c('negative','positive')])
+head(ATO_tweets[c('text','negative','positive')])
+
+ATO_tweets <- ATO_tweets %>% mutate(sentiment = positive - negative)
+summary(ATO_tweets$sentiment)
+
+ggplot(data=ATO_tweets, aes(sentiment)) + 
   geom_histogram(binwidth=1,
                  col="blue", 
                  fill="blue", 
                  alpha = .2) + 
-  labs(title="Number of Tweets by Date") +
+  labs(title="Number of Tweets by Sentiment score") +
   labs(x="Date", y="Count") 
+
+# plot of sentiment over time & automatically choose a method to model the change
+ggplot(ATO_tweets, aes(x = date, y = sentiment)) + 
+  labs(title="Sentiment over time") +
+  geom_smooth(method = "loess") # pick a method & fit a model
+
+ggplot(ATO_tweets[ATO_tweets$sentiment != 0,], aes(x = date, y = sentiment)) + 
+  #  geom_point(aes(color = president))+ # add points to our plot, color-coded by president
+  labs(title="Sentiment over time, excluding neutral") +
+  geom_smooth(method = "loess") # pick a method & fit a model
+
+# Hashtags
 
 # Using the code from the Follow Me presentation:
 ## Step 2: Convert tweets to the tidy text format: `tidytext::unnest_token`
@@ -68,27 +85,18 @@ all_hash <- all_words %>%
   filter( word!="#ato" ) %>%
   filter(str_detect(string = word, pattern = "#")) %>%
   group_by(word) %>%
-  count() %>%
-  filter(n > 4) %>%
+  summarize(Mean = mean(sentiment, na.rm=TRUE),
+            n = length(sentiment)) %>%
+  filter(n > 20) %>%
   ungroup() %>%
   mutate(word = reorder(word,n)) %>%
   arrange(desc(word)) %>%
-  rename(freq = n) 
+  rename(freq = n,
+         Sentiment = Mean,
+         hashtab = word) 
 
 head(all_hash,n=20)
 
-wordcloud(all_hash$word,all_hash$freq) # Basci version wordcloud
-wordcloud2(all_hash) # Wordcloud 2.  Some words obscured
+# Average Sentiment
+mean(ATO_tweets$sentiment)
 
-# Wordcloud highlights some words that don't associate with 
-# Australian Taxation Office, but with a different ATO.  Need to remove these.
-
-
-# Classify Tweets by Sentiment
-# Using code from the Whats_app.R program
-
-Sentiment <- get_nrc_sentiment(ATO_tweets$text)
-head(Sentiment)
-ATO_tweets <- cbind(ATO_tweets,Sentiment)
-
-# Compare hashtag average sentiment to average
