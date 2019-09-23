@@ -41,7 +41,7 @@ for(d in dates) {
   d <- as.Date(d, origin = "1970-01-01")
   print(paste("Date is",d))
   d_tweets <- ATO_tweets %>% filter(date == d)
-  save('d_tweets',file=paste0(DATA_DIR,'/ATO_tweets_',d,'.RData'))
+  save('d_tweets',file=paste0(DATA_DIR,'/ATO_tweets_',d,'.RData'),version=2)
 }
 
-save('ATO_tweets',file=paste0(DATA_DIR,'/ATO_tweets.RData'))
+save('ATO_tweets',file=paste0(DATA_DIR,'/ATO_tweets.RData'),version=2)

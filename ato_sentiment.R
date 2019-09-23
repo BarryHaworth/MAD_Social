@@ -77,7 +77,7 @@ all_words <- ATO_tweets %>%
 
 head(all_words[,c("word","tweetID")])
 
-save('all_words',file=paste0(DATA_DIR,'/all_words.RData'))
+save('all_words',file=paste0(DATA_DIR,'/all_words.RData'),version=2)
 
 # Find Other Hashtags in the tweets
 

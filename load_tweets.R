@@ -24,4 +24,4 @@ for(i in 2:length(file_names)){
   ATO_tweets <- rbind(ATO_tweets,d_tweets)
 }
 
-save('ATO_tweets',file=paste0(DATA_DIR,'/ATO_tweets.RData'))
+save('ATO_tweets',file=paste0(DATA_DIR,'/ATO_tweets.RData'),version=2)
