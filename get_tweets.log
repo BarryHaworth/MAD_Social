@@ -1,0 +1,61 @@
+
+R version 3.5.0 (2018-04-23) -- "Joy in Playing"
+Copyright (C) 2018 The R Foundation for Statistical Computing
+Platform: x86_64-w64-mingw32/x64 (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> source('get_tweets.R')
+[1] "Using direct authentication"
+[1] "Date is 2019-08-16"
+[1] "Date is 2019-08-17"
+[1] "Date is 2019-08-18"
+[1] "Date is 2019-08-19"
+[1] "Date is 2019-08-20"
+[1] "Date is 2019-08-21"
+[1] "Date is 2019-08-22"
+[1] "Date is 2019-08-23"
+[1] "Date is 2019-08-24"
+[1] "Date is 2019-08-25"
+[1] "Date is 2019-08-26"
+[1] "Date is 2019-08-27"
+[1] "Date is 2019-08-28"
+[1] "Date is 2019-08-29"
+[1] "Date is 2019-08-30"
+[1] "Date is 2019-08-31"
+[1] "Date is 2019-09-01"
+[1] "Date is 2019-09-02"
+[1] "Date is 2019-09-03"
+[1] "Date is 2019-09-04"
+[1] "Date is 2019-09-05"
+[1] "Date is 2019-09-06"
+[1] "Date is 2019-09-07"
+[1] "Date is 2019-09-08"
+[1] "Date is 2019-09-09"
+[1] "Date is 2019-09-10"
+[1] "Date is 2019-09-11"
+[1] "Date is 2019-09-12"
+[1] "Date is 2019-09-13"
+[1] "Date is 2019-09-14"
+[1] "Date is 2019-09-15"
+[1] "Date is 2019-09-16"
+[1] "Date is 2019-09-17"
+[1] "Date is 2019-09-18"
+[1] "Date is 2019-09-19"
+[1] "Date is 2019-09-20"
+[1] "Date is 2019-09-21"
+[1] "Date is 2019-09-22"
+> 
+> 
