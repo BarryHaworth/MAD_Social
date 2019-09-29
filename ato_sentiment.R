@@ -93,7 +93,7 @@ all_hash <- all_words %>%
   arrange(desc(word)) %>%
   rename(freq = n,
          Sentiment = Mean,
-         hashtab = word) 
+         hashtag = word) 
 
 head(all_hash,n=20)
 
