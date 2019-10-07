@@ -6,6 +6,7 @@ library(tidyverse)
 library(tidytext)
 library(glue)
 library(stringr)
+library(wordcloud)
 
 # Set environmentvariables.
 #PROJECT_DIR <- "/home/RADLAB/ruca78/sentiment-analysis-research"
@@ -100,3 +101,4 @@ head(all_hash,n=20)
 # Average Sentiment
 mean(ATO_tweets$sentiment)
 
+wordcloud(all_hash$hashtag,all_hash$freq) # Basci version wordcloud
